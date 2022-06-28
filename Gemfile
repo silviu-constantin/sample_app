@@ -12,7 +12,6 @@ gem 'faker',                      '2.11.0'
 gem 'will_paginate',              '3.3.0'
 gem 'bootstrap-will_paginate',    '1.0.0'
 gem 'bootstrap-sass',             '3.4.1'
-gem 'puma',                       '5.3.1'
 gem 'sass-rails',                 '6.0.0'
 gem 'webpacker',                  '5.4.0'
 gem 'turbolinks',                 '5.2.1'
@@ -45,6 +44,7 @@ end
 group :production do
   gem 'pg',         '1.2.3'
   gem 'aws-sdk-s3', '1.87.0', require: false
+  gem 'puma',                       '5.3.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
