@@ -1,0 +1,2 @@
+      invoke  active_record
+      remove    db/migrate/20220703115620_add_activation_to_users.rb
