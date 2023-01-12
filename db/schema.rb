@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_05_063718) do
+ActiveRecord::Schema.define(version: 2023_01_08_185039) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,23 @@ ActiveRecord::Schema.define(version: 2022_07_05_063718) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bindus", force: :cascade do |t|
+    t.string "name"
+    t.text "menu"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "price"
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "dish"
+    t.integer "price"
+    t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
+  end
+
   create_table "microposts", force: :cascade do |t|
     t.text "content"
     t.integer "user_id", null: false
@@ -47,6 +64,36 @@ ActiveRecord::Schema.define(version: 2022_07_05_063718) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
+  create_table "q_rcodes", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "qrcodes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.text "menu"
+    t.text "dish"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,10 +109,12 @@ ActiveRecord::Schema.define(version: 2022_07_05_063718) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.string "owner"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "menus", "restaurants"
   add_foreign_key "microposts", "users"
 end

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Make an order</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Menu</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <%= form_with(model: @new_order) do |form| %>
+  <tbody>
+ 
+    <% @bindus.each do |bindu| %>
+      <tr>
+        <td><%= form.check_box :name, { multiple: true }, bindu.to_json, nil %><%= bindu.menu %></td>
+        <td><%= bindu.price %></td>
+        <% if current_user.owner == "bindu" %>
+        <td><%= link_to 'Show', bindu %></td>
+        <td><%= link_to 'Edit', edit_bindu_path(bindu) %></td>
+        <td><%= link_to 'Destroy', bindu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+  
+        
+      
+    
+    <%= form.submit name: 'create_and_add'%>
+    <% end %>
+</table>

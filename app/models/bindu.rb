@@ -1,0 +1,2 @@
+class Bindu < ApplicationRecord
+end

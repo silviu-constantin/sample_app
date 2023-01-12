@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.3'
+ruby '2.6.6'
 
+gem "rqrcode", "~> 2.0"
 gem 'rails',                      '6.1.4.6'
 gem 'image_processing',           '1.9.3'
 gem 'mini_magick',                '4.9.5'
@@ -51,3 +52,8 @@ end
 # Uncomment the following line if you're running Rails
 # on a native Windows system:
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "chunky_png", "~> 1.4"
+
+gem "prawn", "~> 2.4"
+
+gem "prawn-qrcode", "~> 0.5.2"

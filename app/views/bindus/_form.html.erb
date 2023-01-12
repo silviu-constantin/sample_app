@@ -1,0 +1,27 @@
+<%= form_with(model: bindu) do |form| %>
+  <% if bindu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bindu.errors.count, "error") %> prohibited this bindu from being saved:</h2>
+
+      <ul>
+        <% bindu.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label :menu %>
+    <%= form.text_area :menu %>
+  </div>
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_area :price %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
